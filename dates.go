@@ -7,8 +7,14 @@ import (
 )
 
 const USLayout = "2006-01-02"
+const SQLDatetimeLayout = "2006-01-02 15:04:05"
 
-// Obtiene la fecha ─convertida a string─ con layout YYYY-MM-DD (ISO 8601).
+// DateTime obtiene la fecha y la hora ─ en string─ con el layout YYYY-MM-DD hh-mm-ss.
+func DateTime() string {
+	return time.Now().String()[:19]
+}
+
+// Today Obtiene la fecha ─convertida a string─ con layout YYYY-MM-DD (ISO 8601).
 func Today() string {
 	t := time.Now()
 	date, _ := time.Parse(USLayout, t.String()[:10])
@@ -16,7 +22,7 @@ func Today() string {
 	return date.String()[:10]
 }
 
-// Obtiene la fecha en formato latino (DD/MM/YYYY). Con el parámetro
+// LatinToday Obtiene la fecha en formato latino (DD/MM/YYYY). Con el parámetro
 // letters se alterna a un layout semejante a "16 de junio de 2020".
 func LatinToday(letters bool) string {
 	today, _ := LatinDate(Today(), letters)
